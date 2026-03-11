@@ -39,12 +39,17 @@ Before running the ingestion pipeline, you must initialize the database.
 ~~~
 python setup_db.py
 ~~~
-### Load the data into the database:
+### Run ETL:
 ~~~
 python ingest.py
 ~~~
 
 # Analysis & Insights
+## How to view answers
+~~~
+python analyze.py
+~~~
+
 ## Q1: Which procedures have the widest range between the minimum and maximum negotiated charges? 
 This question is interesting because it allows us to identify procedures where negotiating power or hospital pricing discretion is highest.
 
