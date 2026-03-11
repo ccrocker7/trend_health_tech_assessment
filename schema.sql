@@ -18,7 +18,8 @@ CREATE TABLE charges (
     plan_name TEXT,
     gross_charge NUMERIC,
     discounted_cash_charge NUMERIC,
-    -- A UNIQUE constraint to prevent duplicate entries for the same procedure, payer, and plan combination.     UNIQUE(procedure_id, payer_name, plan_name),
+    -- A UNIQUE constraint to prevent duplicate entries for the same procedure, payer, and plan combination.     
+    UNIQUE(procedure_id, payer_name, plan_name),
     FOREIGN KEY (procedure_id) REFERENCES procedures(procedure_id)
 );
 

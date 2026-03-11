@@ -33,19 +33,12 @@ python -m venv venv
 ~~~
 pip install -r requirements.txt
 ~~~
-## Database Initialization
-Before running the ingestion pipeline, you must initialize the database.
-### Initialize the Schema:
+# Run ETL
 ~~~
-python setup_db.py
+python main.py
 ~~~
-### Run ETL:
-~~~
-python ingest.py
-~~~
-
-# Analysis & Insights
 ## How to view answers
+Answers should be visible in the terminal after running main.py, but if not then users can run
 ~~~
 python analyze.py
 ~~~
