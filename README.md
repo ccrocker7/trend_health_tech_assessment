@@ -39,3 +39,7 @@ Before running the ingestion pipeline, you must initialize the database.
 ~~~
     python setup_db.py
 ~~~
+### Load the data into the database:
+~~~
+python ingest.py
+~~~
