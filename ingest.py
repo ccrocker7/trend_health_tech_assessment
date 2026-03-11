@@ -8,9 +8,23 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def ingest_data(url, db_path="healthcare_costs.db"):
-    # Column mapping from csv to database schema. 
-    # This allows for flexibility if the source data changes slightly.
+def ingest_data(url: str, db_path: str = "healthcare_costs.db") -> None:
+    """
+    Ingests healthcare price transparency data from a URL into a local SQLite database.
+
+    This function performs an Extract-Transform-Load (ETL) process in chunks to 
+    maintain low memory overhead. It ensures idempotency through an in-memory 
+    procedure cache and 'INSERT OR REPLACE' database operations.
+
+    Args:
+        url (str): The URL of the CSV file containing standard charges.
+        db_path (str, optional): The file path to the SQLite database. 
+            Defaults to "healthcare_costs.db".
+
+    Raises:
+        requests.exceptions.RequestException: If the URL is unreachable.
+        sqlite3.Error: If a database operation fails.
+    """
     COLUMN_MAPPING = {
         'description': 'description',
         'payer_name': 'payer_name',

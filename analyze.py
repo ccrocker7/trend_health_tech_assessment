@@ -2,7 +2,32 @@ import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def run_analysis(db_path="healthcare_costs.db"):
+def run_analysis(db_path: str = "healthcare_costs.db") -> None:
+    """
+    Performs multi-dimensional analysis on healthcare pricing data.
+
+    This function executes a series of analytical queries to derive business 
+    intelligence from the charges and procedures datasets. It covers three key 
+    areas: pricing volatility (spread), revenue cycle optimization (cash 
+    savings), and catalog distribution.
+
+    Args:
+        db_path (str, optional): The file path to the SQLite database containing 
+            the 'procedures' and 'charges' tables. Defaults to "healthcare_costs.db".
+
+    Returns:
+        None: Results are printed to the console and a distribution histogram 
+            is saved as 'gross_charge_distribution.png'.
+
+    Analysis Performed:
+        1. Price Spread: Identifies procedures with the highest variance between 
+           min/max gross charges.
+        2. Cash Savings: Calculates the average delta between gross charges and 
+           discounted cash options per procedure.
+        3. Pricing Distribution: Generates a histogram visual of gross charges 
+           under $50,000 to profile the hospital's service pricing catalog.
+    """
+
     conn = sqlite3.connect(db_path)
     
     # --- SQL ANALYSIS Q1: Pricing Spread ---
