@@ -15,31 +15,41 @@ These instructions should set up a copy of the project and get it running on you
 ## Repository Initialization
 ### Clone the repository:
 ~~~
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 ~~~
 ### Create a Virtual Environment:
 ~~~
-    python -m venv venv
+python -m venv venv
 ~~~
 ### Activate the environment:
 ~~~
-    # For PowerShell
-    .\venv\Scripts\Activate.ps1
-    # For Command Prompt
-    .\venv\Scripts\activate.bat
+# For PowerShell
+.\venv\Scripts\Activate.ps1
+# For Command Prompt
+.\venv\Scripts\activate.bat
 ~~~
 ### Install Dependencies:
 ~~~
-    pip install -r requirements.txt
+pip install -r requirements.txt
 ~~~
 ## Database Initialization
 Before running the ingestion pipeline, you must initialize the database.
 ### Initialize the Schema:
 ~~~
-    python setup_db.py
+python setup_db.py
 ~~~
 ### Load the data into the database:
 ~~~
 python ingest.py
 ~~~
+
+# Analysis & Insights
+## Q1: Which procedures have the widest range between the minimum and maximum negotiated charges? 
+This question is interesting because it allows us to identify procedures where negotiating power or hospital pricing discretion is highest.
+
+## Q2: What is the average negotiated rate per Payer Name?
+This question is interesting because it provides a "benchmarking" view, allowing us to see which procedures generally have better discounts. I'm not advocating for getting a procedure done FOR the discount, but most other businesses may advocate a similar approach for purchasing a given product.
+
+## Q3: What is the distribution of pricing for procedures?
+This question is interesting because it allows us to illustrate how affordable (or not) most procedures end up being. For Trend Health, this could indicate that the most value is generated through review of smaller transactions, or that the value skews towards more expensive ones.
