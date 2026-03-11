@@ -72,7 +72,9 @@ def ingest_data(url, db_path="healthcare_costs.db"):
                     # For now, we will use INSERT OR REPLACE for simplicity.
 
                     charges_records = chunk.drop(columns=['description']).to_dict('records')
-
+                    cols = ['gross_charge', 'negotiated_dollar_charge', 'min_charge', 'max_charge']
+                    for col in cols:
+                        chunk[col] = pd.to_numeric(chunk[col].replace(r'[\$,]', '', regex=True), errors='coerce')
                     with conn:
                         conn.executemany("""
                             INSERT OR REPLACE INTO charges 
