@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# --- Windows System Files ---
+Thumbs.db
+desktop.ini
+
+# --- Project Specific ---
+healthcare_costs.db
