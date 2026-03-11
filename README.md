@@ -5,33 +5,37 @@ I have selected the hospital pricing transparency file from the hospital that I 
 ![Schema Diagram](schema_diagram.png)
 
 # Ingest the data
-## Getting Started
 These instructions should set up a copy of the project and get it running on your local Windows machine for review. Feel free to reach out if anything appears to be amiss.
-### Prerequisites
+## Prerequisites
 ~~~
     Python 3.10+ (Ensure it is added to your PATH).
     Git (for version control).
 ~~~
 
-### Installation
-    Clone the repository:
+## Repository Initialization
+### Clone the repository:
 ~~~
     git clone https://github.com/your-username/your-repo-name.git
     cd your-repo-name
 ~~~
-    Create a Virtual Environment:
-
+### Create a Virtual Environment:
 ~~~
     python -m venv venv
 ~~~
-    Activate the environment:
+### Activate the environment:
 ~~~
     # For PowerShell
     .\venv\Scripts\Activate.ps1
     # For Command Prompt
     .\venv\Scripts\activate.bat
 ~~~
-    Install Dependencies:
+### Install Dependencies:
 ~~~
     pip install -r requirements.txt
+~~~
+## Database Initialization
+Before running the ingestion pipeline, you must initialize the database.
+### Initialize the Schema:
+~~~
+    python setup_db.py
 ~~~
