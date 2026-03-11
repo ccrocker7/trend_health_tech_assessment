@@ -17,9 +17,6 @@ def ingest_data(url, db_path="healthcare_costs.db"):
         'plan_name': 'plan_name',
         'standard_charge|gross': 'gross_charge',
         'standard_charge|discounted_cash': 'discounted_cash_charge',
-        'standard_charge|negotiated_dollar': 'negotiated_dollar_charge',
-        'standard_charge|min': 'min_charge',
-        'standard_charge|max': 'max_charge'
     }
 
     try:
@@ -72,16 +69,15 @@ def ingest_data(url, db_path="healthcare_costs.db"):
                     # For now, we will use INSERT OR REPLACE for simplicity.
 
                     charges_records = chunk.drop(columns=['description']).to_dict('records')
-                    cols = ['gross_charge', 'negotiated_dollar_charge', 'min_charge', 'max_charge']
+                    cols = ['gross_charge', 'discounted_cash_charge']
                     for col in cols:
                         chunk[col] = pd.to_numeric(chunk[col].replace(r'[\$,]', '', regex=True), errors='coerce')
                     with conn:
                         conn.executemany("""
                             INSERT OR REPLACE INTO charges 
-                            (procedure_id, payer_name, plan_name, gross_charge, discounted_cash_charge, 
-                             negotiated_dollar_charge, min_charge, max_charge)
+                            (procedure_id, payer_name, plan_name, gross_charge, discounted_cash_charge)
                             VALUES (:procedure_id, :payer_name, :plan_name, :gross_charge, 
-                                    :discounted_cash_charge, :negotiated_dollar_charge, :min_charge, :max_charge)
+                                    :discounted_cash_charge)
                         """, charges_records)
                     
                     logger.info(f"Successfully processed chunk {i+1} ({len(chunk)} rows).")
